@@ -4,6 +4,7 @@ import br.com.EstudoPraticoDeSpring.dto.ProdutoDto;
 import br.com.EstudoPraticoDeSpring.model.Produto;
 import br.com.EstudoPraticoDeSpring.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/produtos")
+@Controller
 public class ProdutoController {
 
     @Autowired
@@ -18,7 +20,7 @@ public class ProdutoController {
 
     @PostMapping("/cadastro")
     public Produto cadastro(@RequestBody ProdutoDto produtoDto){
-        if(!this.validarProduto(produtoDto.getId())){
+        if(!this.verificarProduto(produtoDto.getId())){
             return produtoRepository.save(produtoDto.builder());
         }
         return null;
@@ -26,7 +28,7 @@ public class ProdutoController {
 
     @PutMapping("/{id}/atualizar")
     public Produto atualizar(@PathVariable("id") Long id, @RequestBody ProdutoDto produtoDto){
-        if(this.validarProduto(id)){
+        if(this.verificarProduto(id)){
             Optional<Produto> produto = this.produtoRepository.findById(id);
             produto.get()
                     .setNome(produtoDto.getNome())
@@ -39,7 +41,7 @@ public class ProdutoController {
 
     @DeleteMapping("/")
     public Produto remover(@RequestBody ProdutoDto produtoDto){
-        if(this.validarProduto(produtoDto.getId())){
+        if(this.verificarProduto(produtoDto.getId())){
             Optional<Produto> produto = produtoRepository.findById(produtoDto.getId());
             produtoRepository.delete(produto.get());
             return produto.get();
@@ -49,7 +51,7 @@ public class ProdutoController {
 
     @GetMapping("/{id}")
     public Produto buscarPorId(@PathVariable("id") Long id){
-        if(this.validarProduto(id)){
+        if(this.verificarProduto(id)){
             return produtoRepository.findById(id).get();
         }
         return null;
@@ -60,7 +62,7 @@ public class ProdutoController {
         return produtoRepository.findAll();
     }
 
-    public boolean validarProduto(Long id){
+    public boolean verificarProduto(Long id){
         Optional<Produto> produtoValido = produtoRepository.findById(id);
         if(produtoValido.isPresent()){
             return true;

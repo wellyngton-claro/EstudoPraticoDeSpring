@@ -5,6 +5,7 @@ import br.com.EstudoPraticoDeSpring.model.Usuario;
 import br.com.EstudoPraticoDeSpring.repository.UsuarioRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
+@Controller
 public class UsuarioController {
 
     @Autowired

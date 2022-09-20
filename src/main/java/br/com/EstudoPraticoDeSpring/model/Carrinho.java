@@ -2,7 +2,6 @@ package br.com.EstudoPraticoDeSpring.model;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -24,4 +23,5 @@ public class Carrinho {
     private Usuario usuario;
     @OneToMany
     private List<Produto> listaProdutos;
+    private Long total;
 }
