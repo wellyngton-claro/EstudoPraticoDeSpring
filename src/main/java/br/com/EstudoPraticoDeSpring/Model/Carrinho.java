@@ -1,4 +1,4 @@
-package br.com.EstudoPraticoDeSpring.model;
+package br.com.EstudoPraticoDeSpring.Model;
 
 import lombok.*;
 import lombok.experimental.Accessors;

@@ -1,6 +1,6 @@
-package br.com.EstudoPraticoDeSpring.repository;
+package br.com.EstudoPraticoDeSpring.Repository;
 
-import br.com.EstudoPraticoDeSpring.model.Carrinho;
+import br.com.EstudoPraticoDeSpring.Model.Carrinho;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

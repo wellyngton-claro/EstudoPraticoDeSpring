@@ -1,8 +1,7 @@
-package br.com.EstudoPraticoDeSpring.controller;
+package br.com.EstudoPraticoDeSpring.Service;
 
-import br.com.EstudoPraticoDeSpring.dto.ProdutoDto;
-import br.com.EstudoPraticoDeSpring.model.Produto;
-import br.com.EstudoPraticoDeSpring.repository.ProdutoRepository;
+import br.com.EstudoPraticoDeSpring.DTO.ProdutoDto;
+import br.com.EstudoPraticoDeSpring.Repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,23 +12,23 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/produtos")
 @Controller
-public class ProdutoController {
+public class ProdutoService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
 
     @PostMapping("/cadastro")
-    public Produto cadastro(@RequestBody ProdutoDto produtoDto){
+    public ProdutoDto cadastro(@RequestBody ProdutoDto produtoDto){
         if(!this.verificarProduto(produtoDto.getId())){
-            return produtoRepository.save(produtoDto.builder());
+            return produtoRepository.save(produtoDto));
         }
         return null;
     }
 
     @PutMapping("/{id}/atualizar")
-    public Produto atualizar(@PathVariable("id") Long id, @RequestBody ProdutoDto produtoDto){
+    public ProdutoDto atualizar(@PathVariable("id") Long id, @RequestBody ProdutoDto produtoDto){
         if(this.verificarProduto(id)){
-            Optional<Produto> produto = this.produtoRepository.findById(id);
+            Optional<ProdutoDto> produto = this.produtoRepository.findById(id);
             produto.get()
                     .setNome(produtoDto.getNome())
                     .setDescricao(produtoDto.getDescricao())
@@ -40,9 +39,9 @@ public class ProdutoController {
     }
 
     @DeleteMapping("/")
-    public Produto remover(@RequestBody ProdutoDto produtoDto){
+    public ProdutoDto remover(@RequestBody ProdutoDto produtoDto){
         if(this.verificarProduto(produtoDto.getId())){
-            Optional<Produto> produto = produtoRepository.findById(produtoDto.getId());
+            Optional<ProdutoDto> produto = produtoRepository.findById(produtoDto.getId());
             produtoRepository.delete(produto.get());
             return produto.get();
         }
@@ -50,7 +49,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}")
-    public Produto buscarPorId(@PathVariable("id") Long id){
+    public ProdutoDto buscarPorId(@PathVariable("id") Long id){
         if(this.verificarProduto(id)){
             return produtoRepository.findById(id).get();
         }
@@ -58,12 +57,12 @@ public class ProdutoController {
     }
 
     @GetMapping("")
-    public List<Produto> listar(){
+    public List<ProdutoDto> listar(){
         return produtoRepository.findAll();
     }
 
     public boolean verificarProduto(Long id){
-        Optional<Produto> produtoValido = produtoRepository.findById(id);
+        Optional<ProdutoDto> produtoValido = produtoRepository.findById(id);
         if(produtoValido.isPresent()){
             return true;
         }

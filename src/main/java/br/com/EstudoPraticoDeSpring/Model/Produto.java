@@ -1,10 +1,11 @@
-package br.com.EstudoPraticoDeSpring.model;
+package br.com.EstudoPraticoDeSpring.Model;
 
 import lombok.*;
 import lombok.experimental.Accessors;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Getter
 @Setter
@@ -21,4 +22,6 @@ public class Produto {
     private String descricao;
     private Long valor;
     private Long quantidade;
+    @ManyToOne
+    private Carrinho carrinho;
 }
