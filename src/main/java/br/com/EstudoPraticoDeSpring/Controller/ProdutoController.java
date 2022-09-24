@@ -17,26 +17,26 @@ public class ProdutoController {
 
     @PostMapping("/cadastro")
     public ProdutoDto cadastro(@RequestBody ProdutoDto produtoDto) {
-        return produtoService.cadastro(produtoDto);
+        return this.produtoService.cadastro(produtoDto);
     }
 
     @PutMapping("/{id}/atualizar")
     public ProdutoDto atualizar(@PathVariable("id") Long id, @RequestBody ProdutoDto produtoDto) {
-        return produtoService.atualizar(id, produtoDto);
+        return this.produtoService.atualizar(id, produtoDto);
     }
 
     @DeleteMapping("/")
     public ProdutoDto remover(@RequestBody ProdutoDto produtoDto) {
-        return produtoService.remover(produtoDto);
+        return this.produtoService.remover(produtoDto);
     }
 
     @GetMapping("/{id}")
     public ProdutoDto buscarPorId(@PathVariable("id") Long id) {
-        return produtoService.buscarPorId(id);
+        return this.produtoService.buscarPorId(id);
     }
 
     @GetMapping("")
     public List<ProdutoDto> listar() {
-        return produtoService.listar();
+        return this.produtoService.listar();
     }
 }

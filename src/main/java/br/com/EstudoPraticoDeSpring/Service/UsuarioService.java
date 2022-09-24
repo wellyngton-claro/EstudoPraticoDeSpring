@@ -1,60 +1,67 @@
 package br.com.EstudoPraticoDeSpring.Service;
 
 import br.com.EstudoPraticoDeSpring.DTO.UsuarioDto;
+import br.com.EstudoPraticoDeSpring.Mapper.UsuarioMapper;
+import br.com.EstudoPraticoDeSpring.Model.Usuario;
 import br.com.EstudoPraticoDeSpring.Repository.UsuarioRepository;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-
+@Service
 public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    private UsuarioMapper usuarioMapper;
 
 
-    public UsuarioDto cadastrar(@RequestBody UsuarioDto usuarioDto){
+    public UsuarioDto cadastrar(UsuarioDto usuarioDto){
         if(!this.verificarUsuario(usuarioDto.getId())){
-            return this.usuarioRepository.save(usuarioDto);
+            this.usuarioRepository.save(this.usuarioMapper.DTOparaEntidade(usuarioDto));
+            return usuarioDto;
         }
         return null;
     }
 
-    public UsuarioDto atualizar(@PathVariable("id") Long id, @RequestBody UsuarioDto usuarioDto){
+    public UsuarioDto atualizar(Long id, UsuarioDto usuarioDto){
         if(this.verificarUsuario(id)){
-           Optional<UsuarioDto> usuario = this.usuarioRepository.findById(id);
+           Optional<Usuario> usuario = this.usuarioRepository.findById(id);
            usuario.get()
                   .setNome(usuarioDto.getNome())
                   .setSenha(usuarioDto.getSenha());
-            return this.usuarioRepository.save(usuario.get());
+            this.usuarioRepository.save(usuario.get());
+            return usuarioDto;
         }
         return null;
     }
 
-    public UsuarioDto remover(@RequestBody @NotNull UsuarioDto usuarioDto){
+    public UsuarioDto remover(UsuarioDto usuarioDto){
         if (this.verificarUsuario(usuarioDto.getId())){
-            Optional<UsuarioDto> usuario = this.usuarioRepository.findById(usuarioDto.getId());
+            Optional<Usuario> usuario = this.usuarioRepository.findById(usuarioDto.getId());
             this.usuarioRepository.delete(usuario.get());
-            return usuario.get();
+            return usuarioDto;
         }
         return null;
     }
 
-    public UsuarioDto buscarPorId(@PathVariable("id") Long id){
+    public UsuarioDto buscarPorId(Long id){
         if(this.verificarUsuario(id)){
-            return this.usuarioRepository.findById(id).get();
+            return this.usuarioMapper.entidadeParaDTO(this.usuarioRepository.findById(id).get());
         }
         return null;
     }
 
     public List<UsuarioDto> listar(){
-        return this.usuarioRepository.findAll();
+        return this.usuarioRepository.findAll().stream()
+                .map(usuario -> this.usuarioMapper.entidadeParaDTO(usuario))
+                .collect(Collectors.toList());
     }
 
     public boolean verificarUsuario(Long id){
-        Optional<UsuarioDto> usuarioVerificado= this.usuarioRepository.findById(id);
+        Optional<Usuario> usuarioVerificado= this.usuarioRepository.findById(id);
         return usuarioVerificado.isPresent();
     }
 
