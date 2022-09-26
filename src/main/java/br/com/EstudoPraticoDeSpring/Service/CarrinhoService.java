@@ -32,7 +32,7 @@ public class CarrinhoService {
         return null;
     }
 
-    public CarrinhoDto conferirCarrinho(Long id){
+    public CarrinhoDto buscarCarrinhoPorId(Long id){
         if(this.verificarCarrinho(id)){
             return this.carrinhoMapper.entidadeParaDTO(carrinhoRepository.findById(id).get());
         }

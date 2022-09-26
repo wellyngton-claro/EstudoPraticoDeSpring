@@ -14,26 +14,26 @@ public class UsuarioMapper {
 
     public Usuario DTOparaEntidade(UsuarioDto usuarioDto){
         if(usuarioDto.getId()!=null){
-            Usuario usuario = new Usuario()
-                    .setId(usuarioDto.getId())
-                    .setNome(usuarioDto.getNome())
-                    .setSenha(usuarioDto.getSenha())
-                    .setCarrinho(carrinhoMapper
+            return Usuario.builder()
+                    .id(usuarioDto.getId())
+                    .nome(usuarioDto.getNome())
+                    .senha(usuarioDto.getSenha())
+                    .carrinho(carrinhoMapper
                             .DTOparaEntidade(carrinhoService
-                                            .conferirCarrinho(usuarioDto.getIdCarinho())));
-            return usuario;
+                                            .buscarCarrinhoPorId(usuarioDto.getIdCarinho())))
+                    .build();
         }
         return null;
     }
 
     public UsuarioDto entidadeParaDTO(Usuario usuario){
         if(usuario.getId()!=null){
-            UsuarioDto usuarioDto = new UsuarioDto()
-                    .setId(usuario.getId())
-                    .setNome(usuario.getNome())
-                    .setSenha(usuario.getSenha())
-                    .setIdCarinho(usuario.getCarrinho().getId());
-            return usuarioDto;
+            return UsuarioDto.builder()
+                    .id(usuario.getId())
+                    .nome(usuario.getNome())
+                    .senha(usuario.getSenha())
+                    .idCarinho(usuario.getCarrinho().getId())
+                    .build();
         }
         return null;
     }

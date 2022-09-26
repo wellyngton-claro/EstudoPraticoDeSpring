@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Accessors(chain = true)
+@Builder
 @Entity
 public class Produto {
 

@@ -14,21 +14,21 @@ public class CarrinhoMapper {
 
     public Carrinho DTOparaEntidade(CarrinhoDto carrinhoDto){
         if(carrinhoDto.getId()!=null){
-            Carrinho carrinho = new Carrinho()
-                    .setId(carrinhoDto.getId())
-                    .setUsuario(usuarioMapper
+            return Carrinho.builder()
+                    .id(carrinhoDto.getId())
+                    .usuario(usuarioMapper
                             .DTOparaEntidade(usuarioService
-                                    .buscarPorId(carrinhoDto.getIdUsuario())));
-            return carrinho;
+                                    .buscarPorId(carrinhoDto.getIdUsuario())))
+                    .build();
         }
         return null;
     }
     public CarrinhoDto entidadeParaDTO(Carrinho carrinho){
         if (carrinho.getId()!=null){
-            CarrinhoDto carrinhoDto = new CarrinhoDto()
-                    .setId(carrinho.getId())
-                    .setIdUsuario(carrinho.getUsuario().getId());
-            return carrinhoDto;
+            return CarrinhoDto.builder()
+                    .id(carrinho.getId())
+                    .idUsuario(carrinho.getUsuario().getId())
+                    .build();
         }
         return null;
     }

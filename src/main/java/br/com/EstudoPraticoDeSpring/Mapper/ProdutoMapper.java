@@ -7,27 +7,27 @@ public class ProdutoMapper {
 
     public Produto DTOparaEntidade (ProdutoDto produtoDto){
         if(produtoDto.getId()!=null) {
-            Produto produto = new Produto()
-                    .setId(produtoDto.getId())
-                    .setNome(produtoDto.getNome())
-                    .setDescricao(produtoDto.getDescricao())
-                    .setQuantidade(produtoDto.getQuantidade())
-                    .setValor(produtoDto.getValor());
-            return produto;
+            return Produto.builder()
+                    .id(produtoDto.getId())
+                    .nome(produtoDto.getNome())
+                    .descricao(produtoDto.getDescricao())
+                    .quantidade(produtoDto.getQuantidade())
+                    .valor(produtoDto.getValor())
+                    .build();
         }
         return null;
     }
 
     public ProdutoDto entidadeParaDTO(Produto produto){
         if(produto.getId()!=null){
-            ProdutoDto produtoDto = new ProdutoDto()
-                    .setId(produto.getId())
-                    .setNome(produto.getNome())
-                    .setDescricao(produto.getDescricao())
-                    .setQuantidade(produto.getQuantidade())
-                    .setValor(produto.getValor())
-                    .setIdCarrinho(produto.getCarrinho().getId());
-            return produtoDto;
+            return ProdutoDto.builder()
+                    .id(produto.getId())
+                    .nome(produto.getNome())
+                    .descricao(produto.getDescricao())
+                    .quantidade(produto.getQuantidade())
+                    .valor(produto.getValor())
+                    .idCarrinho(produto.getCarrinho().getId())
+                    .build();
         }
         return null;
     }

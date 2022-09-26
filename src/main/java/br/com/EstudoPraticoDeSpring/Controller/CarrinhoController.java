@@ -21,7 +21,7 @@ public class CarrinhoController{
 
     @GetMapping("/carrinho")
     public CarrinhoDto conferirCarrinho(@RequestBody Long id){
-        return this.carrinhoService.conferirCarrinho(id);
+        return this.carrinhoService.buscarCarrinhoPorId(id);
     }
 
     @PutMapping("/produtos/{id}")
