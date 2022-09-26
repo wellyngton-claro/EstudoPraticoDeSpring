@@ -15,6 +15,7 @@ public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+    @Autowired
     private UsuarioMapper usuarioMapper;
 
 
@@ -29,9 +30,10 @@ public class UsuarioService {
     public UsuarioDto atualizar(Long id, UsuarioDto usuarioDto){
         if(this.verificarUsuario(id)){
            Optional<Usuario> usuario = this.usuarioRepository.findById(id);
-           usuario.get()
-                  .setNome(usuarioDto.getNome())
-                  .setSenha(usuarioDto.getSenha());
+           usuario.get().builder()
+                  .nome(usuarioDto.getNome())
+                  .senha(usuarioDto.getSenha())
+                  .build();
             this.usuarioRepository.save(usuario.get());
             return usuarioDto;
         }

@@ -17,6 +17,7 @@ public class ProdutoService {
 
     @Autowired
     private ProdutoRepository produtoRepository;
+    @Autowired
     private ProdutoMapper produtoMapper;
 
     public ProdutoDto cadastro(ProdutoDto produtoDto){
@@ -30,10 +31,11 @@ public class ProdutoService {
     public ProdutoDto atualizar(Long id, ProdutoDto produtoDto){
         if(this.verificarProduto(id)){
             Optional<Produto> produto = this.produtoRepository.findById(id);
-            produto.get()
-                    .setNome(produtoDto.getNome())
-                    .setDescricao(produtoDto.getDescricao())
-                    .setValor(produtoDto.getValor());
+            produto.get().builder()
+                    .nome(produtoDto.getNome())
+                    .descricao(produtoDto.getDescricao())
+                    .valor(produtoDto.getValor())
+                    .build();
             this.produtoRepository.save(produto.get());
             return produtoDto;
         }

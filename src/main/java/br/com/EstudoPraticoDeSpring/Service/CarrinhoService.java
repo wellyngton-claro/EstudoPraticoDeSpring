@@ -21,7 +21,9 @@ public class CarrinhoService {
     private ProdutoService produtoService;
     @Autowired
     private UsuarioService usuarioService;
+    @Autowired
     private CarrinhoMapper carrinhoMapper;
+    @Autowired
     private ProdutoMapper produtoMapper;
 
     public CarrinhoDto registarCarrinho(CarrinhoDto carrinhoDto){
