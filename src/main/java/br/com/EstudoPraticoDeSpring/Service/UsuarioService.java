@@ -2,7 +2,7 @@ package br.com.EstudoPraticoDeSpring.Service;
 
 import br.com.EstudoPraticoDeSpring.DTO.UsuarioDto;
 import br.com.EstudoPraticoDeSpring.Mapper.UsuarioMapper;
-import br.com.EstudoPraticoDeSpring.Model.Usuario;
+import br.com.EstudoPraticoDeSpring.Entity.Usuario;
 import br.com.EstudoPraticoDeSpring.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

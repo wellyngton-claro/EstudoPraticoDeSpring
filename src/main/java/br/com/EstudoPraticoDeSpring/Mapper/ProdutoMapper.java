@@ -1,7 +1,7 @@
 package br.com.EstudoPraticoDeSpring.Mapper;
 
 import br.com.EstudoPraticoDeSpring.DTO.ProdutoDto;
-import br.com.EstudoPraticoDeSpring.Model.Produto;
+import br.com.EstudoPraticoDeSpring.Entity.Produto;
 
 public class ProdutoMapper {
 

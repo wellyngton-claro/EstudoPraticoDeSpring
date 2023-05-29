@@ -4,10 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 /**
- * A DTO for the {@link br.com.EstudoPraticoDeSpring.Model.Carrinho} entity
+ * A DTO for the {@link br.com.EstudoPraticoDeSpring.Entity.Carrinho} entity
  */
 @Data
 @AllArgsConstructor

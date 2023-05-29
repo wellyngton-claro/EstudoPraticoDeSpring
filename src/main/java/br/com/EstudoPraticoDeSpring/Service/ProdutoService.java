@@ -2,7 +2,7 @@ package br.com.EstudoPraticoDeSpring.Service;
 
 import br.com.EstudoPraticoDeSpring.DTO.ProdutoDto;
 import br.com.EstudoPraticoDeSpring.Mapper.ProdutoMapper;
-import br.com.EstudoPraticoDeSpring.Model.Produto;
+import br.com.EstudoPraticoDeSpring.Entity.Produto;
 import br.com.EstudoPraticoDeSpring.Repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

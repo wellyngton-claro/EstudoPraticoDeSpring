@@ -4,12 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
 /**
- * A DTO for the {@link br.com.EstudoPraticoDeSpring.Model.Usuario} entity
+ * A DTO for the {@link br.com.EstudoPraticoDeSpring.Entity.Usuario} entity
  */
 @Data
 @AllArgsConstructor

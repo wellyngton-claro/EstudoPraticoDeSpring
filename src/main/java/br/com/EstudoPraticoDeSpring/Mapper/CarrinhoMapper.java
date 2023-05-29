@@ -1,7 +1,7 @@
 package br.com.EstudoPraticoDeSpring.Mapper;
 
 import br.com.EstudoPraticoDeSpring.DTO.CarrinhoDto;
-import br.com.EstudoPraticoDeSpring.Model.Carrinho;
+import br.com.EstudoPraticoDeSpring.Entity.Carrinho;
 import br.com.EstudoPraticoDeSpring.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 

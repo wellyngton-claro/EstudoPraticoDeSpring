@@ -1,7 +1,7 @@
-package br.com.EstudoPraticoDeSpring.Model;
+package br.com.EstudoPraticoDeSpring.Entity;
 
 import lombok.*;
-import lombok.experimental.Accessors;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
